@@ -1,8 +1,8 @@
-import { doGet } from './server/webapp';
-import './es6';
+import { check } from './app';
+import { onOpen, show } from './app/ui';
+import { validateSheets } from './app/prepare';
 
-global.doGet = doGet;
-
-global.sendmail = (email = 'amit@labnol.org') => {
-  GmailApp.sendEmail(email, 'It works!', 'Hello Google Apps Script');
-};
+global.check = check;
+global.validateSheets = validateSheets;
+global.show = show;
+global.onOpen = onOpen;

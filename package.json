@@ -1,13 +1,12 @@
 {
-  "name": "apps-script-starter",
-  "version": "2.0.0",
-  "description": "A starter kit for creating Google Apps Script project with modern JavaScript",
+  "name": "durstexpress",
+  "version": "1.0.0",
+  "description": "Durstexpress price tracker as Google Sheet Add-On",
   "author": {
-    "name": "Amit Agarwal",
-    "email": "amit@labnol.org",
-    "url": "https://digitalinspiration.com"
+    "name": "Salim KAYABASI",
+    "email": "salim.kayabasi@gmail.com",
+    "url": "https://github.com/salimkayabasi/durstexpressgs"
   },
-  "homepage": "https://digitalinspiration.com/",
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
@@ -17,30 +16,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/labnol/apps-script-starter.git"
+    "url": "git+https://github.com/salimkayabasi/durstexpressgs.git"
   },
   "keywords": [
     "google-apps-script",
     "gsuite",
     "apps-script"
   ],
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.1.0",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/plugin-transform-member-expression-literals": "^7.0.0",
-    "@babel/plugin-transform-object-assign": "^7.0.0",
-    "@babel/plugin-transform-property-literals": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@google/clasp": "^1.5.3",
     "@types/google-apps-script": "^0.0.28",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.2",
-    "babel-plugin-add-module-exports": "^1.0.0",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",
-    "dayjs": "^1.7.5",
     "eslint": "^5.6.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.0.1",

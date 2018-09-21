@@ -24,6 +24,8 @@
     "Slides": true,
     "OAuth1": true,
     "OAuth2": true,
-    "FirebaseApp": true
+    "FirebaseApp": true,
+    "TEST": true,
+    "cheerio": true
   }
 }

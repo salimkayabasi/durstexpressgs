@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Durstexpress Price Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+  <script>
+    function onFailure(error) {
+      const div = document.getElementById('output');
+      div.innerHTML = 'ERROR: ' + error.message;
+    }
+  </script>
+  <div class="section">
+    <h4>Durstexpress Price Tracker</h4>
+    <p>
+      <button onclick="google.script.run.withFailureHandler(onFailure).check()">Check</button>
+      <button onclick="google.script.run.withFailureHandler(onFailure).validateSheets()">validateSheets</button>
+    </p>
+
+    <pre id="output">
+
+    </pre>
+
+  </div>
+</div>
+</body>
+
+</html>
