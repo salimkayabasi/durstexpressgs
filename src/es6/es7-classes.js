@@ -1,17 +1,13 @@
 class Person {
+  static country = 'India';
+  static sayHello = () => {
+    Logger.log('Hello World!!');
+  };
   name = 'Amit Agarwal';
-
   greet = () => `Hello ${this.name}!!`;
-
   getFirstName = () => {
     const [firstName] = this.name.split(' ');
     return firstName;
-  };
-
-  static country = 'India';
-
-  static sayHello = () => {
-    Logger.log('Hello World!!');
   };
 }
 
