@@ -1,10 +1,13 @@
 import consts from './consts';
-import { verifySheet } from './util/sheet';
+import { getAllSheetsName, removeSheet, verifySheet } from './util/sheet';
 
-export const validateSheets = () => {
-  consts.sheetNames.forEach(verifySheet);
-};
+export const clean = sheetNames =>
+  getAllSheetsName()
+    .filter(sheetName => sheetNames.indexOf(sheetName) === -1)
+    .forEach(removeSheet);
 
 export const prepare = () => {
-  validateSheets();
+  const sheets = consts.sheetNames;
+  clean(sheets);
+  sheets.forEach(verifySheet);
 };

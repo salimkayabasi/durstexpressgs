@@ -11,16 +11,17 @@
 <body>
 <div class="container">
   <script>
-    function onFailure(error) {
+    function handler(error) {
       const div = document.getElementById('output');
-      div.innerHTML = 'ERROR: ' + error.message;
+      const message = error && `${error.message} ${error.stack}`;
+      div.innerHTML = message || 'DONE';
     }
   </script>
   <div class="section">
     <h4>Durstexpress Price Tracker</h4>
     <p>
-      <button onclick="google.script.run.withFailureHandler(onFailure).check()">Check</button>
-      <button onclick="google.script.run.withFailureHandler(onFailure).validateSheets()">validateSheets</button>
+      <button onclick="google.script.run.withSuccessHandler(handler).withFailureHandler(handler).check()">Check
+      </button>
     </p>
 
     <pre id="output">

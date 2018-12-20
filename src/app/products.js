@@ -1,37 +1,35 @@
-const sheetName = 'Products';
+import { getSheet } from './util/sheet';
+import consts from './consts';
 
-function getSheet() {
-  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
-}
+export const getProducts = () => {
+  const sheet = getSheet(consts.products.sheetName);
+  return sheet
+    .getDataRange()
+    .getValues()
+    .slice(1)
+    .reduce((result, row) => {
+      result.push({
+        name: row[0],
+        price: Number(row[1]),
+        url: row[2]
+      });
+      return result;
+    }, []);
+};
 
-function readProductsFromSheet() {
-  const sheet = getSheet();
-  const data = sheet.getDataRange().getValues();
-  const result = [];
-  for (let i = 1; i < data.length; i += 1) {
-    result.push({
-      name: data[i][0],
-      price: Number(data[i][1]),
-      url: data[i][2]
-    });
-  }
-  return result;
-}
+const getPriceByUrl = (products, url) => {
+  const [product] = products.filter(p => p.url === url);
+  return product && product.actualPrice;
+};
 
-export const getProducts = () => readProductsFromSheet();
-
-export const updatePriceOnSheet = (url, price) => {
-  const sheet = getSheet();
+export const updatePrice = products => {
+  const sheet = getSheet(consts.products.sheetName);
   const dataRange = sheet.getDataRange();
-  const data = dataRange.getValues();
-
-  data.map(product => {
-    const result = product;
-    const pUrl = product[2];
-    if (pUrl === url) {
-      result[1] = price;
-    }
-    return result;
-  });
-  dataRange.setValues(data);
+  dataRange.setValues(
+    dataRange.getValues().map(row => {
+      const [name, price, url] = row;
+      const actualPrice = getPriceByUrl(products, url);
+      return [name, actualPrice || price, url];
+    })
+  );
 };

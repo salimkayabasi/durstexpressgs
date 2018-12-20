@@ -18,12 +18,14 @@ export const isAvailable = page => {
   return page.indexOf(yes) !== -1 && page.indexOf(no) === -1;
 };
 
-export const checkStock = url => {
+export const checkPrice = product => product.stock && product.actualPrice !== product.price;
+
+export const checkStock = ({ url }) => {
   const page = fetchPage(url);
-  const price = findPrice(page);
+  const actualPrice = findPrice(page);
   const stock = isAvailable(page);
   return {
-    price,
+    actualPrice,
     stock
   };
 };

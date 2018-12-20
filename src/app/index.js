@@ -1,17 +1,21 @@
-import { getProducts } from './products';
-import { notifyCustomers } from './customers';
-import { checkStock } from './page';
+import { getProducts, updatePrice } from './products';
+import { checkPrice, checkStock } from './stock';
 import { prepare } from './prepare';
+import { getCustomers } from './customers';
+import { notify } from './email';
 
 export const check = () => {
   prepare();
-  const products = getProducts();
-  products.forEach(product => {
-    const result = checkStock(product.url);
-    if (result.stock || TEST) {
-      notifyCustomers(result, product);
-    }
-  });
+  const customers = getCustomers();
+  const products = getProducts()
+    .map(product => ({
+      ...product,
+      ...checkStock(product)
+    }))
+    .filter(checkPrice)
+    .map(product => {
+      notify(customers, product);
+      return product;
+    });
+  updatePrice(products);
 };
-
-export { clean } from './clean';

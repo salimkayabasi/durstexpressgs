@@ -1,9 +1,5 @@
-export const getSheet = sheetName => {
-  Logger.log(sheetName);
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
-  Logger.log((sheet && sheet.getName()) || 1);
-  return sheet;
-};
+export const getSheet = sheetName =>
+  SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
 
 export const createSheet = sheetName =>
   SpreadsheetApp.getActiveSpreadsheet().insertSheet(sheetName, 0);
