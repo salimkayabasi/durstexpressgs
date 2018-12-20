@@ -1,3 +1,5 @@
+import { trigger } from '../timer';
+
 export const getHtml = () => {
   const title = 'Durstexpress Price Tracker';
   const fileName = 'index.html';
@@ -20,4 +22,9 @@ export const addMenu = () => {
 
 export const onOpen = () => {
   addMenu();
+};
+
+export const onInstall = e => {
+  onOpen(e);
+  trigger();
 };

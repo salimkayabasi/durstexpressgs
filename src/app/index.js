@@ -4,6 +4,8 @@ import { prepare } from './prepare';
 import { getCustomers } from './customers';
 import { notify } from './email';
 
+export { trigger } from './timer';
+
 export const check = () => {
   prepare();
   const customers = getCustomers();
