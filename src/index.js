@@ -1,7 +1,15 @@
-import { check, trigger } from './app';
-import { onOpen, show } from './app/ui';
+const { check, trigger } = require('./app');
+const { prepareSheets } = require('./app/sheet');
+const { register } = require('./telegram');
+const { doPost, doGet } = require('./http');
+
+const prepare = () => {
+  prepareSheets();
+  register();
+};
 
 global.check = check;
-global.show = show;
-global.onOpen = onOpen;
 global.trigger = trigger;
+global.doPost = doPost;
+global.doGet = doGet;
+global.prepare = prepare;

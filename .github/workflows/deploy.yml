@@ -1,0 +1,38 @@
+name: Lint & Test & Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  CLASPRC: ${{ secrets.CLASPRC }}
+  CLASP: ${{secrets.CLASP}}
+  DEPLOYMENT_ID: ${{ secrets.DEPLOYMENT_ID }}
+  BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+  WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Linter
+        run: npm run lint
+      - name: Set bot token
+        run: echo BOT_TOKEN=$BOT_TOKEN > .env
+      - name: Build
+        run: npm run build
+      - name: clasp install
+        run: sudo npm i @google/clasp -g
+      - name: genarate .clasprc.json
+        run: echo $CLASPRC > ~/.clasprc.json
+      - name: generate .clasp.json
+        run: echo $CLASP > ~/.clasp.json
+      - name: Deploy
+        run: clasp push -f && clasp deploy -i $DEPLOYMENT_ID && clasp deployments
+      - name: Set Webhook
+        run: curl $WEBHOOK_URL
