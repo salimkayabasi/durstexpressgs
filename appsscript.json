@@ -1,13 +1,13 @@
 {
-  "timeZone": "Europe/Berlin",
-  "dependencies": {
-    "libraries": [
-      {
-        "userSymbol": "cheerio",
-        "libraryId": "1ReeQ6WO8kKNxoaA_O0XEQ589cIrRvEBA9qcWpNqdOP17i47u6N9M5Xh0",
-        "version": "10"
-      }
-    ]
+  "webapp": {
+    "access": "ANYONE_ANONYMOUS",
+    "executeAs": "USER_DEPLOYING"
   },
-  "exceptionLogging": "STACKDRIVER"
+  "urlFetchWhitelist": [
+    "https://www.durstexpress.de/",
+    "https://api.telegram.org/"
+  ],
+  "timeZone": "Europe/Berlin",
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8"
 }

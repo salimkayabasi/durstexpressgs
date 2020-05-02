@@ -1,76 +1,76 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const GasPlugin = require('gas-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+
 const pkg = require('./package');
 
-const destination = 'dist';
+const cwd = process.cwd();
+const src = path.resolve(cwd, 'src');
+const dist = path.resolve(cwd, 'dist');
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  context: __dirname,
+  mode: process.env.NODE_ENV || 'development',
+  context: cwd,
   entry: './src/index.js',
   output: {
     filename: `${pkg.name}.js`,
-    path: path.resolve(__dirname, destination),
-    libraryTarget: 'this'
+    path: dist,
+    libraryTarget: 'this',
   },
   resolve: {
-    extensions: ['.js']
+    extensions: ['.js'],
   },
   optimization: {
+    minimize: isProduction,
     minimizer: [
-      new UglifyJSPlugin({
-        uglifyOptions: {
-          ie8: true,
+      new TerserPlugin({
+        terserOptions: {
+          ecma: 6,
           warnings: false,
-          mangle: false,
+          mangle: {},
           compress: {
-            properties: false,
-            warnings: false,
-            drop_console: false
+            drop_console: false,
+            drop_debugger: isProduction,
           },
           output: {
-            beautify: true
-          }
-        }
-      })
-    ]
+            beautify: !isProduction,
+          },
+        },
+      }),
+    ],
   },
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          cache: true,
-          failOnError: false
-        }
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
-      }
-    ]
+          loader: 'babel-loader',
+        },
+      },
+    ],
   },
   plugins: [
-    new CleanWebpackPlugin([destination]),
+    new Dotenv(),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       {
-        from: './src/**/*.html',
+        from: `${src}/**/*.html`,
         flatten: true,
-        to: path.resolve(__dirname, destination)
+        to: dist,
       },
       {
-        from: './appsscript.json',
-        to: path.resolve(__dirname, destination)
-      }
+        from: `${src}/../appsscript.json`,
+        to: dist,
+      },
     ]),
-    new GasPlugin()
-  ]
+    new GasPlugin({
+      comments: false,
+    }),
+  ],
 };
