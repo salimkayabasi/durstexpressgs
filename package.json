@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "eslint --ext js .",
     "lint:fix": "npm run lint --- --fix",
-    "prebuild": "npm run lint:fix",
+    "prebuild": "npm run lint",
     "build": "webpack -p",
     "prepush": "npm run build",
     "push": "clasp push -f"
