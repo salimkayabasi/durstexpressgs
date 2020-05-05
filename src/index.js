@@ -1,4 +1,5 @@
-const { check, trigger } = require('./app');
+const { check } = require('./app');
+const { trigger } = require('./app/timer');
 const { prepareSheets } = require('./app/sheet');
 const { register } = require('./telegram');
 const { doPost, doGet } = require('./http');

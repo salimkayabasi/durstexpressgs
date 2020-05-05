@@ -1,5 +1,5 @@
 const trigger = () => {
-  // ScriptApp.newTrigger('check').timeBased().everyMinutes(1).create();
+  ScriptApp.newTrigger('check').timeBased().everyMinutes(10).create();
 };
 
 module.exports = {
