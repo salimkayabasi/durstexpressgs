@@ -86,7 +86,9 @@ You can try any of these commands below
 /author - Want to talk with author of this bot?
 /help - If you need help
 
-Please just share the any product link from durstexpress which you want to track price of it.
+*How to add new subscription?*
+Please just share the any *product link* from durstexpress which you want to track price of it.
+I'll check price and let you know when it is changed
 `,
 );
 
