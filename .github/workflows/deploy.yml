@@ -36,3 +36,7 @@ jobs:
         run: clasp push -f && clasp deploy -i $DEPLOYMENT_ID && clasp deployments
       - name: Set Webhook
         run: curl https://script.google.com/macros/s/$DEPLOYMENT_ID/exec
+      - name: Set Webhook
+        run: curl -s https://script.google.com/macros/s/$DEPLOYMENT_ID/exec
+      - name: Print Webhook info
+        run: curl https://api.telegram.org/$BOT_TOKEN/getWebhookInfo
