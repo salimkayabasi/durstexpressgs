@@ -1,4 +1,4 @@
-const { register, onMessage, onCallback, getMe, request } = require('./telegram');
+const { onMessage, onCallback, getMe, request } = require('./telegram');
 const { prepareSheets } = require('./sheet');
 
 const DEBUG = process.env.DEBUG === 'true';
@@ -10,11 +10,10 @@ const responder = (content) => {
 };
 
 const doGet = () => {
-  const webhook = register();
   prepareSheets();
   const response = getMe();
   Logger.log(response);
-  return responder({ webhook, response });
+  return responder(response);
 };
 const doPost = (e) => {
   Logger.log(e);
