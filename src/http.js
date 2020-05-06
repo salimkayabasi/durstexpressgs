@@ -10,11 +10,11 @@ const responder = (content) => {
 };
 
 const doGet = () => {
-  register();
+  const webhook = register();
   prepareSheets();
   const response = getMe();
   Logger.log(response);
-  return responder(response);
+  return responder({ webhook, response });
 };
 const doPost = (e) => {
   Logger.log(e);

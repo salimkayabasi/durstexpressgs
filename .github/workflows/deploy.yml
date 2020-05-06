@@ -35,4 +35,4 @@ jobs:
       - name: Deploy
         run: clasp push -f && clasp deploy -i $DEPLOYMENT_ID && clasp deployments
       - name: Set Webhook
-        run: curl $WEBHOOK_URL
+        run: curl https://script.google.com/macros/s/$DEPLOYMENT_ID/exec
