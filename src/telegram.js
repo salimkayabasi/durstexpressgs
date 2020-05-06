@@ -43,11 +43,6 @@ const reply = (senderId, data) => {
   return replyToSender(senderId, data.text, data.markup);
 };
 
-const register = () =>
-  request('setWebhook', {
-    url: ScriptApp.getService().getUrl(),
-  });
-
 const getMe = () => request('getMe', {});
 
 const onMessage = (message) => {
@@ -99,7 +94,6 @@ module.exports = {
   request,
   onMessage,
   onCallback,
-  register,
   getMe,
   reply,
 };
