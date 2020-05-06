@@ -1,10 +1,10 @@
-const { checkProduct } = require('./app/product');
+const { checkProduct } = require('./product');
 const {
   addSubscription,
   getSubscriptions,
   removeSubscriptionWithTitle,
   removeSubscriptionWithSenderId,
-} = require('./app/sheet');
+} = require('./sheet');
 
 const DEBUG = process.env.DEBUG === 'true';
 const hostName = 'https://www.durstexpress.de/';

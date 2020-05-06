@@ -1,8 +1,6 @@
 const { getSheetData, setSheetValues } = require('./sheet');
 const { checkProduct } = require('./product');
-const { reply } = require('../telegram');
-
-const { trigger } = require('./timer');
+const { reply } = require('./telegram');
 
 const check = () => {
   let rows = getSheetData();
@@ -38,6 +36,5 @@ const check = () => {
 };
 
 module.exports = {
-  trigger,
   check,
 };
