@@ -1,8 +1,11 @@
 const sheetName = 'durstexpress';
 
-const getSheet = (name = sheetName) => SpreadsheetApp.getActiveSpreadsheet().getSheetByName(name);
-const createSheet = (name) => SpreadsheetApp.getActiveSpreadsheet().insertSheet(name, 0);
-const removeSheet = (name) => SpreadsheetApp.getActiveSpreadsheet().deleteSheet(getSheet(name));
+const getSheet = (name = sheetName) =>
+  SpreadsheetApp.getActiveSpreadsheet().getSheetByName(name);
+const createSheet = (name) =>
+  SpreadsheetApp.getActiveSpreadsheet().insertSheet(name, 0);
+const removeSheet = (name) =>
+  SpreadsheetApp.getActiveSpreadsheet().deleteSheet(getSheet(name));
 const verifySheet = (name) => getSheet(name) || createSheet(name);
 
 const getAllSheetsName = () =>
@@ -33,7 +36,11 @@ const addSubscription = ({ username, senderId, name, price, url }) => {
   const rows = getSheetData();
   const exists = rows.find((row) => {
     const [user, id, productName] = row;
-    return user === username && id.toString() === senderId.toString() && productName === name;
+    return (
+      user === username &&
+      id.toString() === senderId.toString() &&
+      productName === name
+    );
   });
   if (exists) {
     return;
