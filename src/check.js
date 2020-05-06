@@ -28,7 +28,10 @@ const check = () => {
       const [user, id, name, price, url] = row;
       const update = updated[url];
       if (update) {
-        reply(id, `Price of *${name}* has changed to *${update}* from *${price}*`);
+        reply(
+          id,
+          `Price of *${name}* has changed to *${update}* from *${price}*`,
+        );
       }
       return [user, id, name, update || price, url];
     }),

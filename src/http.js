@@ -4,7 +4,9 @@ const { prepareSheets } = require('./sheet');
 const DEBUG = process.env.DEBUG === 'true';
 
 const responder = (content) => {
-  const html = `<b>Hello from DurstExpressBot</b>\n\n\n<code>${JSON.stringify(content)}</code>`;
+  const html = `<b>Hello from DurstExpressBot</b>\n\n\n<code>${JSON.stringify(
+    content,
+  )}</code>`;
   Logger.log(html);
   return HtmlService.createHtmlOutput(html);
 };

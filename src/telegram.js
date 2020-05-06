@@ -1,4 +1,8 @@
-const { subscribeToLink, listSubscriptions, removeSubscription } = require('./durstexpress');
+const {
+  subscribeToLink,
+  listSubscriptions,
+  removeSubscription,
+} = require('./durstexpress');
 
 const DEBUG = process.env.DEBUG === 'true';
 const token = process.env.BOT_TOKEN;
