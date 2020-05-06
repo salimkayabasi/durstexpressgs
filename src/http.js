@@ -1,5 +1,5 @@
 const { register, onMessage, onCallback, getMe, request } = require('./telegram');
-const { prepareSheets } = require('./app/sheet');
+const { prepareSheets } = require('./sheet');
 
 const DEBUG = process.env.DEBUG === 'true';
 
