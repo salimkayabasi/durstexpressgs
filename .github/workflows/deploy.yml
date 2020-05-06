@@ -39,4 +39,4 @@ jobs:
       - name: Set Webhook
         run: curl -s https://script.google.com/macros/s/$DEPLOYMENT_ID/exec
       - name: Print Webhook info
-        run: curl https://api.telegram.org/$BOT_TOKEN/getWebhookInfo
+        run: curl https://api.telegram.org/bot$BOT_TOKEN/getWebhookInfo
